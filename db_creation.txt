@@ -1,0 +1,26 @@
+Используйте базу данных из wamp64 (phpmyadmin)
+
+-- Создание базы данных
+CREATE DATABASE pizzeria;
+
+-- Использование базы данных
+USE pizzeria;
+
+-- Создание таблицы users
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL, --- индексный ключ
+    password VARCHAR(255) NOT NULL
+);
+
+-- Создание таблицы orders
+CREATE TABLE orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    delivery_address VARCHAR(255) NOT NULL,
+    order_details TEXT NOT NULL,
+    delivery_date DATE NOT NULL,
+    images_location TEXT,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
